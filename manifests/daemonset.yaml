@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: bfd-bird
+  name: bfd-bird
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: bfd-bird
+  template:
+    metadata:
+      labels:
+        app: bfd-bird
+    spec:
+      containers:
+      - image: myregistry.example.com/library/bfd-bird:latest
+        name: bfd-bird
+        volumeMounts:
+        - mountPath: /etc/bird.conf
+          name: config
+          subPath: bird.conf
+      hostNetwork: true
+      volumes:
+      - configMap:
+          name: bird-config
+        name: config
