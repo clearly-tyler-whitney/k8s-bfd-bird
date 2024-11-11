@@ -15,7 +15,7 @@ docker push myregistry.example.com/library/bfd-bird:latest
 
 Edit `bird.conf` and the example DaemonSet in `manifests/` to suit your environment.
 
-## Deploying
+## Deploy
 
 ```bash
 kubectl create configmap bird-config --from-file ./bird.conf
